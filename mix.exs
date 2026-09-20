@@ -51,6 +51,7 @@ defmodule Clarity.MixProject do
         clarity_introspectors: [
           Clarity.Introspector.Application,
           Clarity.Introspector.Module,
+          Clarity.Introspector.Manifest,
           Clarity.Introspector.Spark.Dsl,
           Clarity.Introspector.Spark.Extension,
           Clarity.Introspector.Spark.Section,
@@ -104,6 +105,7 @@ defmodule Clarity.MixProject do
       {:usage_rules, "~> 1.2", only: [:dev]},
       {:ash, "~> 3.6", optional: true},
       {:spark, "~> 2.3", optional: true},
+      {:jason, "~> 1.4"},
       {:phoenix, "~> 1.8"},
       {:phoenix_html, "~> 4.2"},
       {:phoenix_live_view, "~> 1.0"},

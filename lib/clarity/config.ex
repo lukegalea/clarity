@@ -68,6 +68,27 @@ defmodule Clarity.Config do
   config :clarity, :default_perspective_lens, "debug"
   ```
 
+  ### Semantic Manifest (`:semantic_manifest`)
+
+  Points the `Clarity.Introspector.Manifest` introspector at one or more
+  Spark/Ash semantic manifest documents (`semantic-manifest-v0`). When set,
+  the introspector imports each document's symbols into the graph as
+  `Clarity.Vertex.Manifest.Symbol` vertices — adding source spans and
+  provenance edges that live introspection cannot provide. When unset, the
+  introspector is a no-op.
+
+      config :clarity, :semantic_manifest, path: "priv/semantic/manifest.json"
+      config :clarity, :semantic_manifest, paths: ["priv/semantic/a.json", "priv/semantic/b.json"]
+      config :clarity, :semantic_manifest, "priv/semantic/manifest.json"
+
+  Applications can also register their own manifests, collected across all
+  loaded applications:
+
+      config :my_app, :clarity_semantic_manifests, ["priv/semantic/manifest.json"]
+
+  A missing, unreadable, or malformed manifest is ignored with a logged
+  warning; it never prevents Clarity from starting or introspecting.
+
   ### Cache Path (`:cache_path`)
 
   Sets the directory where the graph cache is stored:

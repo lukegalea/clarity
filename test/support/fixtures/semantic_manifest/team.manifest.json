@@ -1,0 +1,599 @@
+{
+  "manifest_version": "0",
+  "ash_schema_version": "1.0.0",
+  "note": "Trimmed copy of docs/rfc/fixtures/ash_enterprise_accounts_team.manifest.json (RFC semantic-manifest-v0, revision 2) for exercising Clarity.Introspector.Manifest. Covers resource, section, attribute (with and without spans), action, policy (ordinal id), and code_interface_function symbols, plus contains/guarded_by/implements_action/generated_from relations and module-ref relations whose targets do not exist in Clarity's test graph. Hash values are illustrative placeholders carried over from the RFC fixture.",
+  "abridged": true,
+  "generated_at": "2026-09-20T00:00:00Z",
+  "emitter": {
+    "name": "ash.manifest.dump --semantic",
+    "version": "0.0.0-rfc"
+  },
+  "toolchain": {
+    "elixir": "1.18.0",
+    "otp": "27.0",
+    "spark": "2.7.3",
+    "ash": "3.33.5",
+    "debug_info": true
+  },
+  "module": "AshEnterprise.Accounts.Team",
+  "module_kind": "resource",
+  "extensions": [
+    "AshStateMachine",
+    "AshEnterprise.Platform.SystemAttributes"
+  ],
+  "types": [
+    {
+      "kind": "enum",
+      "name": "TeamType",
+      "module": "AshEnterprise.Accounts.Types.TeamType",
+      "values": [
+        "owner",
+        "access",
+        "security_group",
+        "office_group"
+      ],
+      "constraints": {}
+    }
+  ],
+  "files": [
+    {
+      "path": "lib/ash_enterprise/accounts/team.ex",
+      "digest": "sha256:623a6d484ce5502bd0dc7d8fd39aeafa",
+      "role": "declaration"
+    },
+    {
+      "path": "lib/ash_enterprise/platform/resource.ex",
+      "digest": "sha256:1a0ef15b999c9d20a0f09f982598f684",
+      "role": "injector"
+    }
+  ],
+  "hashes": {
+    "inputs": "sha256:03366bf33e0a1530bd75bcabc1cb6e87",
+    "manifest": "sha256:8f1ede94549b5854d25fe741c4b2aadd"
+  },
+  "symbols": [
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#resource",
+      "kind": "resource",
+      "name": "Team",
+      "dsl_path": [],
+      "span": {
+        "file": "lib/ash_enterprise/accounts/team.ex",
+        "start": {
+          "line": 1,
+          "column": 1
+        },
+        "end": {
+          "line": 177,
+          "column": 4
+        },
+        "fidelity": "exact"
+      },
+      "provenance": [
+        {
+          "stage": "declared",
+          "by": null,
+          "span": {
+            "file": "lib/ash_enterprise/accounts/team.ex",
+            "start": {
+              "line": 34,
+              "column": 3
+            },
+            "end": {
+              "line": 38,
+              "column": 25
+            },
+            "fidelity": "exact"
+          },
+          "note": "use AshEnterprise.Platform.Resource, ownership: :business_owned, api_type: :team"
+        }
+      ],
+      "hashes": {
+        "identity": "sha256:785525c9efea05c28ca70f29529c8350",
+        "shape": "sha256:4130d4afd0d2d3eb984cddd39b83de79",
+        "content": "sha256:d8e27154830b99b6ed4dae91e013f3e0"
+      },
+      "doc": "A group of users, and — depending on its type — either a principal that can own records and hold roles, or a lightweight bucket for sharing.",
+      "public": true,
+      "domain": "AshEnterprise.Accounts",
+      "data_layer": "AshPostgres.DataLayer",
+      "authorizers": [
+        "Ash.Policy.Authorizer"
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "embedded": false,
+      "identities": {
+        "unique_name_per_business_unit": {
+          "keys": [
+            "owning_business_unit_id",
+            "name"
+          ]
+        }
+      },
+      "multitenancy": {
+        "strategy": "attribute",
+        "attribute": "organization_id",
+        "global": true
+      },
+      "tags": [
+        "cdm:Team",
+        "ownership:business_owned",
+        "api_type:team"
+      ]
+    },
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#postgres",
+      "kind": "section",
+      "name": "postgres",
+      "dsl_path": [
+        "postgres"
+      ],
+      "span": {
+        "file": "lib/ash_enterprise/accounts/team.ex",
+        "start": {
+          "line": 40,
+          "column": 3
+        },
+        "end": {
+          "line": 43,
+          "column": 6
+        },
+        "fidelity": "exact"
+      },
+      "property_spans": {
+        "table": {
+          "file": "lib/ash_enterprise/accounts/team.ex",
+          "start": {
+            "line": 41,
+            "column": 5
+          },
+          "end": null,
+          "fidelity": "start_only"
+        }
+      },
+      "provenance": [
+        {
+          "stage": "declared",
+          "by": null
+        }
+      ],
+      "hashes": {
+        "identity": "sha256:b77c3f2aaf31e385513022b7df16e8f3",
+        "shape": "sha256:6800091ed2e3491ff5e9267d1d9f1020",
+        "content": "sha256:a3f9cf3ea98ce46ec5c62ab8cc2e5c0d"
+      },
+      "options": {
+        "table": {
+          "value_repr": "teams",
+          "type": {
+            "kind": "string",
+            "name": "String",
+            "module": "Ash.Type.String"
+          },
+          "from_default": false
+        }
+      },
+      "top_level": false
+    },
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#attributes/name",
+      "kind": "attribute",
+      "name": "name",
+      "dsl_path": [
+        "attributes"
+      ],
+      "span": {
+        "file": "lib/ash_enterprise/accounts/team.ex",
+        "start": {
+          "line": 48,
+          "column": 5
+        },
+        "end": {
+          "line": 52,
+          "column": 8
+        },
+        "fidelity": "exact"
+      },
+      "property_spans": {
+        "allow_nil?": {
+          "file": "lib/ash_enterprise/accounts/team.ex",
+          "start": {
+            "line": 49,
+            "column": 7
+          },
+          "end": null,
+          "fidelity": "start_only"
+        }
+      },
+      "provenance": [
+        {
+          "stage": "declared",
+          "by": null
+        }
+      ],
+      "hashes": {
+        "identity": "sha256:8b7b683790d71bdad082e486d0a7fc59",
+        "shape": "sha256:5927d89ee38f83d423dd816c8fe74796",
+        "content": "sha256:7b2556428af0979ed7ce3253bc2594aa"
+      },
+      "public": true,
+      "sensitive": false,
+      "ash_type": "Ash.Type.String",
+      "field_kind": "attribute",
+      "type": {
+        "accepted": {
+          "kind": "string",
+          "name": "String",
+          "module": "Ash.Type.String",
+          "constraints": {
+            "max_length": 160
+          }
+        },
+        "normalized": {
+          "kind": "string",
+          "name": "String",
+          "module": "Ash.Type.String",
+          "constraints": {
+            "max_length": 160
+          }
+        }
+      },
+      "allow_nil": false,
+      "primary_key": false,
+      "writable": true,
+      "generated": false,
+      "filterable": true,
+      "sortable": true,
+      "has_default": false,
+      "select_by_default": true,
+      "default": null,
+      "constraints": {
+        "max_length": 160
+      }
+    },
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#attributes/lifecycle_status",
+      "kind": "attribute",
+      "name": "lifecycle_status",
+      "dsl_path": [
+        "attributes"
+      ],
+      "span": null,
+      "provenance": [
+        {
+          "stage": "macro_injected",
+          "by": "AshEnterprise.Platform.Resource",
+          "span": {
+            "file": "lib/ash_enterprise/accounts/team.ex",
+            "start": {
+              "line": 34,
+              "column": 3
+            },
+            "end": {
+              "line": 38,
+              "column": 25
+            },
+            "fidelity": "exact"
+          },
+          "note": "use/2 with lifecycle?: true (default), which sets platform.lifecycle?"
+        },
+        {
+          "stage": "transformer_added",
+          "by": "AshEnterprise.Platform.Transformers.AddSystemAttributes",
+          "span": {
+            "file": "lib/ash_enterprise/platform/transformers/add_system_attributes.ex",
+            "start": {
+              "line": 126,
+              "column": 7
+            },
+            "end": null,
+            "fidelity": "start_only"
+          },
+          "inferred": true,
+          "note": "Entity has no annotation and no declaring file."
+        }
+      ],
+      "hashes": {
+        "identity": "sha256:e63e10fd435bc55473fb51606d403db0",
+        "shape": "sha256:4e09789ce8939f2428268555447b1aa1",
+        "content": "sha256:551892b1bfe60e57d4dd8da3481838d6"
+      },
+      "doc": "The record's lifecycle status. Managed by AshStateMachine: only declared transitions may change it.",
+      "public": true,
+      "ash_type": "Ash.Type.Atom",
+      "field_kind": "attribute",
+      "type": {
+        "accepted": {
+          "kind": "union",
+          "name": "Union",
+          "module": "Ash.Type.Union",
+          "members": [
+            {
+              "name": "atom_form",
+              "type": {
+                "kind": "literal_union",
+                "name": "LiteralUnion",
+                "values": [
+                  "active",
+                  "inactive"
+                ]
+              }
+            }
+          ]
+        },
+        "normalized": {
+          "kind": "literal_union",
+          "name": "LiteralUnion",
+          "values": [
+            "active",
+            "inactive"
+          ]
+        }
+      },
+      "allow_nil": false,
+      "writable": true,
+      "generated": false,
+      "default": {
+        "value_repr": "active",
+        "type": {
+          "kind": "literal",
+          "name": "Literal",
+          "value": "active"
+        }
+      },
+      "constraints": {
+        "one_of": [
+          "active",
+          "inactive"
+        ]
+      },
+      "has_default": true,
+      "select_by_default": true
+    },
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#actions/create",
+      "kind": "action",
+      "name": "create",
+      "dsl_path": [
+        "actions"
+      ],
+      "span": {
+        "file": "lib/ash_enterprise/accounts/team.ex",
+        "start": {
+          "line": 127,
+          "column": 5
+        },
+        "end": {
+          "line": 129,
+          "column": 8
+        },
+        "fidelity": "exact"
+      },
+      "provenance": [
+        {
+          "stage": "declared",
+          "by": null
+        }
+      ],
+      "hashes": {
+        "identity": "sha256:30604b5834412d09c5e9935b8cbbb2d8",
+        "shape": "sha256:89f44d842b15f82852e31d1736a7bd91",
+        "content": "sha256:0f895eed41f2bb1c52120baee2612f6d"
+      },
+      "public": true,
+      "action_type": "create",
+      "primary": true,
+      "get": false,
+      "metadata": [],
+      "accept": [
+        "name",
+        "team_type"
+      ],
+      "argument_ids": [],
+      "required_inputs": [
+        "name"
+      ],
+      "transaction": true,
+      "changes": []
+    },
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#policies/0",
+      "kind": "policy",
+      "name": null,
+      "id_stability": "ordinal",
+      "dsl_path": [
+        "policies"
+      ],
+      "span": {
+        "file": "lib/ash_enterprise/security/policies.ex",
+        "start": {
+          "line": 118,
+          "column": 9
+        },
+        "end": {
+          "line": 120,
+          "column": 12
+        },
+        "fidelity": "exact"
+      },
+      "provenance": [
+        {
+          "stage": "macro_injected",
+          "by": "AshEnterprise.Security.Policies",
+          "span": {
+            "file": "lib/ash_enterprise/platform/resource.ex",
+            "start": {
+              "line": 160,
+              "column": 15
+            },
+            "end": {
+              "line": 161,
+              "column": 53
+            },
+            "fidelity": "exact"
+          },
+          "note": "use AshEnterprise.Security.Policies, injected by AshEnterprise.Platform.Resource when policies?: true"
+        }
+      ],
+      "hashes": {
+        "identity": "sha256:beb40711e4953be53efb78b2fd5aa08d",
+        "shape": "sha256:f736ee7e5842dbc56c818d57807c469d",
+        "content": "sha256:50c7795fdef93657108eb4ed8f657afd"
+      },
+      "doc": "Bypass for the BPMN engine. Must precede everything else.",
+      "policy_kind": "bypass",
+      "ordinal": 0,
+      "condition": [],
+      "checks": [
+        {
+          "decision": "authorize_if",
+          "check_module": "Ash.Policy.Check.Static",
+          "check_type": "simple",
+          "opts_repr": {
+            "result": true
+          }
+        }
+      ],
+      "fields": null,
+      "access_type": "filter",
+      "error_message": null
+    },
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#code_interface/create/2",
+      "kind": "code_interface_function",
+      "name": "create",
+      "dsl_path": [
+        "code_interface"
+      ],
+      "span": {
+        "file": "lib/ash_enterprise/accounts/team.ex",
+        "start": {
+          "line": 173,
+          "column": 5
+        },
+        "end": null,
+        "fidelity": "start_only"
+      },
+      "provenance": [
+        {
+          "stage": "declared",
+          "by": null,
+          "note": "define :create"
+        },
+        {
+          "stage": "generated_code",
+          "by": "Ash.CodeInterface",
+          "note": "Name and arity derived at ash lib/ash/code_interface.ex:1080-1116."
+        }
+      ],
+      "hashes": {
+        "identity": "sha256:66f1281e20cd09d21f449af944f1b2ef",
+        "shape": "sha256:1221846df89d268547db9a0573e6d4a5",
+        "content": "sha256:747f1445df4a6a4442544d7d872992cd"
+      },
+      "public": true,
+      "target_module": "AshEnterprise.Accounts.Team",
+      "function_name": "create",
+      "arity": 2,
+      "variant": "action",
+      "raising": false,
+      "action_ref": {
+        "resource": "AshEnterprise.Accounts.Team",
+        "action": "create",
+        "symbol": "ash:v0:AshEnterprise.Accounts.Team#actions/create"
+      },
+      "positional_args": []
+    },
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#code_interface/create!/2",
+      "kind": "code_interface_function",
+      "name": "create!",
+      "dsl_path": [
+        "code_interface"
+      ],
+      "span": {
+        "file": "lib/ash_enterprise/accounts/team.ex",
+        "start": {
+          "line": 173,
+          "column": 5
+        },
+        "end": null,
+        "fidelity": "start_only"
+      },
+      "provenance": [
+        {
+          "stage": "declared",
+          "by": null,
+          "note": "define :create"
+        },
+        {
+          "stage": "generated_code",
+          "by": "Ash.CodeInterface",
+          "note": "bang_fn = :\"#{name}!\" (ash lib/ash/code_interface.ex:1087)."
+        }
+      ],
+      "hashes": {
+        "identity": "sha256:893319c1ce844cec82778445fb28f92e",
+        "shape": "sha256:13f3d6c616bdcab88a32fe42c64443e2",
+        "content": "sha256:e0830355662c2843b701d89015ad576"
+      },
+      "public": true,
+      "target_module": "AshEnterprise.Accounts.Team",
+      "function_name": "create!",
+      "arity": 2,
+      "variant": "action_bang",
+      "raising": true,
+      "action_ref": {
+        "resource": "AshEnterprise.Accounts.Team",
+        "action": "create",
+        "symbol": "ash:v0:AshEnterprise.Accounts.Team#actions/create"
+      },
+      "positional_args": []
+    },
+    {
+      "id": "ash:v0:AshEnterprise.Accounts.Team#custom/unknown_kind",
+      "kind": "some_future_kind",
+      "name": "unknown",
+      "dsl_path": [
+        "custom"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "ash:v0:AshEnterprise.Accounts.Team#resource",
+      "to": "ash:v0:AshEnterprise.Accounts.Team#attributes/name",
+      "kind": "contains"
+    },
+    {
+      "from": "ash:v0:AshEnterprise.Accounts.Team#resource",
+      "to": "ash:v0:AshEnterprise.Accounts.Team#policies/0",
+      "kind": "guarded_by"
+    },
+    {
+      "from": "ash:v0:AshEnterprise.Accounts.Team#attributes/lifecycle_status",
+      "to": "AshEnterprise.Platform.Transformers.AddSystemAttributes",
+      "kind": "transformed_from",
+      "note": "Attribution is inferred; see RFC 3.6."
+    },
+    {
+      "from": "ash:v0:AshEnterprise.Accounts.Team#relationships/users",
+      "to": "AshEnterprise.Accounts.User",
+      "kind": "references_resource"
+    },
+    {
+      "from": "ash:v0:AshEnterprise.Accounts.Team#code_interface/create/2",
+      "to": "ash:v0:AshEnterprise.Accounts.Team#actions/create",
+      "kind": "implements_action"
+    },
+    {
+      "from": "ash:v0:AshEnterprise.Accounts.Team#code_interface/create/2",
+      "to": "ash:v0:AshEnterprise.Accounts.Team#code_interface/create!/2",
+      "kind": "generated_from",
+      "note": "Same Ash.Resource.Interface entity; both come from `define :create`."
+    }
+  ],
+  "diagnostics": []
+}
