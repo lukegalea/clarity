@@ -19,6 +19,12 @@ defmodule Clarity.ReportLiveTest do
       assert html =~ "Security posture"
     end
 
+    test "renders the ontology report under the architect lens", %{conn: conn} do
+      {:ok, _view, html} = live(conn, "/architect/report/ontology")
+
+      assert html =~ "Ontology"
+    end
+
     test "switching report tabs patches to the other report", %{conn: conn} do
       {:ok, view, _html} = live(conn, "/security/report/supply-chain")
 
@@ -28,7 +34,7 @@ defmodule Clarity.ReportLiveTest do
     end
 
     test "shows an empty state for a lens with no reports", %{conn: conn} do
-      {:ok, _view, html} = live(conn, "/architect/report")
+      {:ok, _view, html} = live(conn, "/debug/report")
 
       assert html =~ "No reports are available"
     end
