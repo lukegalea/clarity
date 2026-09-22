@@ -198,7 +198,7 @@ defmodule Clarity.MixProject do
       source_ref: "v#{@version}",
       extras: [
         "documentation/how_to/integrate-from-a-library.md"
-      ],
+      ] ++ extra_docs(),
       groups_for_extras: [
         "How To": ~r'documentation/how_to'
       ],
@@ -234,5 +234,14 @@ defmodule Clarity.MixProject do
         ]
       ]
     ]
+  end
+
+  # EXTRA_DOCS=AGENTS.md mix docs routes standalone agent docs (AGENTS.md,
+  # usage rules output) through the extras pipeline so broken refs warn like
+  # any other doc. The value is a single Path.wildcard glob; e.g.
+  # EXTRA_DOCS='AGENTS.md' or EXTRA_DOCS='usage-rules/*.md'. CI may add
+  # warnings_as_errors: true.
+  defp extra_docs do
+    if glob = System.get_env("EXTRA_DOCS"), do: Path.wildcard(glob), else: []
   end
 end
