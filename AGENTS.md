@@ -60,11 +60,11 @@ Flag vertices with `info`/`warning`/`error` indicators that roll up the navigati
 
 ### 6. Reports (`lib/clarity/report/`)
 
-Lens-scoped roll-ups of the graph, rendered as a single interactive view — an alternative to graph navigation. Implement the `Clarity.Report` behaviour with `name/0`, optional `description/0`, and `applies?/1` (lens scoping); the module is also a LiveComponent, embedded by `Clarity.ReportLive` with `graph`/`lens`/`prefix`. A header Explore | Reports toggle appears when the active lens has reports.
+Lens-scoped roll-ups of the graph, rendered as a single interactive view — an alternative to graph navigation. Implement the `Clarity.Report` behaviour with `name/0`, optional `description/0`, and `applies?/1` (lens scoping); the module is also a LiveComponent, embedded by Clarity.ReportLive with `graph`/`lens`/`prefix`. A header Explore | Reports toggle appears when the active lens has reports.
 
 ### Core Modules
 
-- `Clarity.Server` - GenServer orchestrating introspection via PartitionSupervisor workers
+- Clarity.Server (hidden module) - GenServer orchestrating introspection via PartitionSupervisor workers
 - `Clarity.Graph` - Graph structure using `:digraph`, ETS tables, and tree graphs
 - `Clarity.Graph.Filter` - Tuple-based query syntax for filtering vertices
 - `Clarity.Router` - Phoenix router macros (`import Clarity.Router`, then `clarity "/clarity"`)
@@ -300,7 +300,7 @@ mix usage_rules.search_docs "Enum.zip" --query-by title
 - **Always** preload Ecto associations in queries when they'll be accessed in templates, ie a message that needs to reference the `message.user.email`
 - Remember `import Ecto.Query` and other supporting modules when you write `seeds.exs`
 - `Ecto.Schema` fields always use the `:string` type, even for `:text`, columns, ie: `field :name, :string`
-- `Ecto.Changeset.validate_number/2` **DOES NOT SUPPORT the `:allow_nil` option**. By default, Ecto validations only run if a change for the given field exists and the change value is not nil, so such as option is never needed
+- Ecto.Changeset.validate_number/2 **DOES NOT SUPPORT the `:allow_nil` option**. By default, Ecto validations only run if a change for the given field exists and the change value is not nil, so such as option is never needed
 - You **must** use `Ecto.Changeset.get_field(changeset, :field)` to access changeset fields
 - Fields which are set programatically, such as `user_id`, must not be listed in `cast` calls or similar for security purposes. Instead they must be explicitly set when creating the struct
 - **Always** invoke `mix ecto.gen.migration migration_name_using_underscores` when generating migration files, so the correct timestamp and conventions are applied
@@ -712,7 +712,7 @@ And **never** do this:
 
 _A declarative, extensible framework for building Elixir applications._
 
-[ash usage rules](deps/ash/usage-rules.md)
+ash usage rules: deps/ash/usage-rules.md
 
 <!-- ash-end -->
 <!-- igniter-start -->
@@ -721,7 +721,7 @@ _A declarative, extensible framework for building Elixir applications._
 
 _A code generation and project patching framework_
 
-[igniter usage rules](deps/igniter/usage-rules.md)
+igniter usage rules: deps/igniter/usage-rules.md
 
 <!-- igniter-end -->
 <!-- spark-start -->
@@ -730,7 +730,7 @@ _A code generation and project patching framework_
 
 _Generic tooling for building DSLs_
 
-[spark usage rules](deps/spark/usage-rules.md)
+spark usage rules: deps/spark/usage-rules.md
 
 <!-- spark-end -->
 <!-- usage-rules-end -->
